@@ -1,0 +1,4 @@
+{"type":"server-started","port":52755,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:52755","screen_dir":"/Users/rafaelbrito/Developer/translator/.superpowers/brainstorm/31521-1776559234/content","state_dir":"/Users/rafaelbrito/Developer/translator/.superpowers/brainstorm/31521-1776559234/state"}
+{"type":"screen-added","file":"/Users/rafaelbrito/Developer/translator/.superpowers/brainstorm/31521-1776559234/content/option-b-detail.html"}
+{"type":"screen-added","file":"/Users/rafaelbrito/Developer/translator/.superpowers/brainstorm/31521-1776559234/content/design-overview.html"}
+{"type":"server-stopped","reason":"idle timeout"}

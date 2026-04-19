@@ -1,0 +1,102 @@
+<h2>3 Approaches to the Church Translator App</h2>
+<p class="subtitle">100+ BYOD listeners · 4+ languages · Single room · No internet · Low latency</p>
+
+<div class="options">
+
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Translator Phone as Wi-Fi Hotspot</h3>
+      <p>Each translator's phone creates a Wi-Fi hotspot. Listeners connect their phones directly to the hotspot for their language. Audio streams over UDP/RTP on the local network.</p>
+      <br>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Zero infrastructure needed</li>
+            <li>Very low latency (~20–40ms)</li>
+            <li>Works on Android &amp; iOS</li>
+            <li>Simple to set up per service</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>iOS hotspot limited to ~15–50 connections (carrier-dependent)</li>
+            <li>Listeners lose cellular while connected</li>
+            <li>Each language = separate WiFi network to join</li>
+            <li>Android works better as hotspot than iOS</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:12px"><strong>Stack:</strong> Flutter · UDP/RTP audio · Native hotspot APIs</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Dedicated Micro-AP (Raspberry Pi / Travel Router) ⭐ Recommended</h3>
+      <p>A tiny ~$20 device (Raspberry Pi Zero 2W or travel router) acts as a local Wi-Fi access point. All translators and listeners connect to it. Audio distributed via UDP multicast — one stream per language channel. No internet. No router needed.</p>
+      <br>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Scales to 100+ devices reliably</li>
+            <li>Lowest latency (~10–25ms)</li>
+            <li>Single network for all 4+ languages</li>
+            <li>UDP multicast = one stream, N listeners</li>
+            <li>Listeners keep cellular data</li>
+            <li>Portable, fits in a pocket, battery-powered</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>One small physical device needed</li>
+            <li>One-time setup (~30 min)</li>
+            <li>Listeners must join the Pi's WiFi network</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:12px"><strong>Stack:</strong> Flutter · UDP multicast/RTP · Opus codec · Raspberry Pi Zero 2W as AP</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Bluetooth LE + Platform P2P APIs</h3>
+      <p>Use Apple Multipeer Connectivity (iOS) and Google Nearby Connections (Android) for true device-to-device communication over BLE + Wi-Fi Direct. A bridge device links the two ecosystems.</p>
+      <br>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Truly zero infrastructure</li>
+            <li>Platform-native (fastest integration)</li>
+            <li>No WiFi network switching</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>iOS and Android can't talk to each other natively</li>
+            <li>Requires a bridge device between ecosystems</li>
+            <li>Max ~8–20 concurrent connections per session</li>
+            <li>BLE audio bandwidth is low quality without pairing</li>
+            <li>Much higher development complexity</li>
+            <li>Does NOT scale to 100+ listeners</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:12px"><strong>Stack:</strong> React Native · Multipeer Connectivity · Nearby Connections API · Bridge device</p>
+    </div>
+  </div>
+
+</div>
+
+<div style="margin-top: 24px; padding: 16px; background: rgba(255,255,255,0.05); border-radius: 8px; border-left: 3px solid #7c6af7;">
+  <p><strong>My recommendation: Option B.</strong> A Raspberry Pi Zero 2W (~$20, runs on a small USB battery bank) gives you the best of all worlds — no internet, no commercial infrastructure, 100+ devices, lowest latency, and one app for all languages. It's minimal hardware that stays at the church and just works.</p>
+</div>

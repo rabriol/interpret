@@ -1,0 +1,181 @@
+<h2>Option B — Micro-AP Architecture</h2>
+<p class="subtitle">Raspberry Pi Zero 2W as local Wi-Fi hub · No internet · 100+ devices · True iOS/Android agnostic</p>
+
+<!-- Architecture Diagram -->
+<div class="section">
+  <h3>How It Works</h3>
+  <div style="background: rgba(255,255,255,0.04); border-radius: 12px; padding: 24px; font-family: monospace; font-size: 13px; line-height: 2;">
+
+    <div style="display: flex; align-items: flex-start; gap: 32px; flex-wrap: wrap;">
+
+      <!-- Translators -->
+      <div style="flex: 1; min-width: 160px;">
+        <div style="text-align:center; margin-bottom: 8px;">
+          <span style="font-size: 28px;">🎙️</span>
+          <div style="color: #a78bfa; font-weight: bold; font-size: 12px; letter-spacing: 1px; text-transform: uppercase;">TRANSLATORS</div>
+        </div>
+        <div style="background: rgba(124,106,247,0.15); border: 1px solid #7c6af7; border-radius: 8px; padding: 10px; font-size: 12px; text-align:center;">
+          <div>📱 iPhone/Android</div>
+          <div style="color:#a78bfa">Language: EN→ES</div>
+          <div style="color:#555; font-size:11px">Channel 1 · UDP port 5001</div>
+        </div>
+        <div style="height:8px"></div>
+        <div style="background: rgba(124,106,247,0.15); border: 1px solid #7c6af7; border-radius: 8px; padding: 10px; font-size: 12px; text-align:center;">
+          <div>📱 iPhone/Android</div>
+          <div style="color:#a78bfa">Language: EN→PT</div>
+          <div style="color:#555; font-size:11px">Channel 2 · UDP port 5002</div>
+        </div>
+        <div style="height:8px"></div>
+        <div style="background: rgba(124,106,247,0.15); border: 1px solid #7c6af7; border-radius: 8px; padding: 10px; font-size: 12px; text-align:center;">
+          <div>📱 iPhone/Android</div>
+          <div style="color:#a78bfa">Language: EN→ZH</div>
+          <div style="color:#555; font-size:11px">Channel 3 · UDP port 5003</div>
+        </div>
+        <div style="height:8px"></div>
+        <div style="background: rgba(124,106,247,0.15); border: 1px solid #7c6af7; border-radius: 8px; padding: 10px; font-size: 12px; text-align:center;">
+          <div>📱 iPhone/Android</div>
+          <div style="color:#a78bfa">Language: EN→FR</div>
+          <div style="color:#555; font-size:11px">Channel 4 · UDP port 5004</div>
+        </div>
+      </div>
+
+      <!-- Arrow left -->
+      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; padding-top: 80px;">
+        <div style="color:#7c6af7; font-size:22px;">→</div>
+        <div style="font-size:10px; color:#555; text-align:center">UDP<br>stream</div>
+      </div>
+
+      <!-- Pi -->
+      <div style="flex: 0; min-width: 140px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding-top:60px;">
+        <div style="font-size:40px; text-align:center;">💾</div>
+        <div style="background: rgba(16,185,129,0.15); border: 2px solid #10b981; border-radius: 12px; padding: 14px 18px; text-align:center; margin-top:8px;">
+          <div style="color:#10b981; font-weight:bold; font-size:13px;">Raspberry Pi</div>
+          <div style="color:#10b981; font-size:11px;">Zero 2W</div>
+          <div style="height: 8px;"></div>
+          <div style="font-size:11px; color:#888;">Wi-Fi AP</div>
+          <div style="font-size:11px; color:#888;">SSID: ChurchTranslator</div>
+          <div style="font-size:11px; color:#888;">No internet</div>
+          <div style="height: 8px;"></div>
+          <div style="font-size:11px; color:#10b981;">Relay server</div>
+          <div style="font-size:11px; color:#555;">receives streams</div>
+          <div style="font-size:11px; color:#555;">rebroadcasts</div>
+          <div style="font-size:11px; color:#555;">per channel</div>
+        </div>
+        <div style="font-size:11px; color:#555; margin-top:8px; text-align:center;">$20 · credit card size<br>USB battery powered</div>
+      </div>
+
+      <!-- Arrow right -->
+      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; padding-top: 80px;">
+        <div style="color:#f59e0b; font-size:22px;">→</div>
+        <div style="font-size:10px; color:#555; text-align:center">multicast<br>per channel</div>
+      </div>
+
+      <!-- Listeners -->
+      <div style="flex: 1; min-width: 160px;">
+        <div style="text-align:center; margin-bottom: 8px;">
+          <span style="font-size: 28px;">🎧</span>
+          <div style="color: #f59e0b; font-weight: bold; font-size: 12px; letter-spacing: 1px; text-transform: uppercase;">LISTENERS (100+)</div>
+        </div>
+        <div style="background: rgba(245,158,11,0.1); border: 1px solid #f59e0b; border-radius: 8px; padding: 10px; font-size: 12px; text-align:center;">
+          <div>📱 Any iPhone/Android</div>
+          <div style="color:#f59e0b">Picks language channel</div>
+          <div style="color:#555; font-size:11px">Tunes to CH1, CH2... etc</div>
+          <div style="color:#555; font-size:11px">Uses earphones</div>
+        </div>
+        <div style="margin-top: 12px; font-size: 11px; color: #888; text-align:center;">
+          All 100+ devices join<br><strong style="color:#f59e0b">ChurchTranslator</strong> Wi-Fi<br>No internet needed<br>Cellular still works ✅
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Latency -->
+<div class="section">
+  <h3>Latency</h3>
+  <div style="display:flex; gap: 12px; flex-wrap:wrap;">
+    <div style="background: rgba(16,185,129,0.1); border: 1px solid #10b981; border-radius: 8px; padding: 12px 16px; flex:1; min-width:120px; text-align:center;">
+      <div style="font-size: 24px; font-weight: bold; color: #10b981;">10–25ms</div>
+      <div style="font-size: 12px; color: #888;">End-to-end<br>realistic target</div>
+    </div>
+    <div style="background: rgba(255,255,255,0.04); border: 1px solid #333; border-radius: 8px; padding: 12px 16px; flex:2; min-width:200px; font-size:12px;">
+      <div>🎙️ Mic capture: ~10ms</div>
+      <div>🔧 Opus encode (10ms frame): ~10ms</div>
+      <div>📡 Wi-Fi hop to Pi: ~1ms</div>
+      <div>📡 Pi relay + multicast: ~1ms</div>
+      <div>🔊 Decode + output: ~5ms</div>
+      <div style="margin-top:6px; color:#10b981; font-weight:bold;">Total: ~27ms 🎯</div>
+    </div>
+    <div style="background: rgba(255,255,255,0.04); border: 1px solid #333; border-radius: 8px; padding: 12px 16px; flex:1; min-width:120px; font-size:11px; color:#888;">
+      <div style="color:#fff; font-size:12px; margin-bottom:4px;">For context:</div>
+      <div>Professional IR: 20–30ms</div>
+      <div>TV broadcast: 5–8 sec</div>
+      <div>WebRTC: 100–300ms</div>
+      <div style="color:#10b981; margin-top:4px;">Option B beats most commercial systems</div>
+    </div>
+  </div>
+</div>
+
+<!-- Hardware -->
+<div class="section">
+  <h3>Hardware Needed</h3>
+  <div style="display:flex; gap:12px; flex-wrap:wrap;">
+    <div style="background: rgba(255,255,255,0.04); border: 1px solid #333; border-radius: 8px; padding: 12px 16px; flex:1; min-width:140px; font-size:12px;">
+      <div style="font-weight:bold; margin-bottom:4px;">💾 Raspberry Pi Zero 2W</div>
+      <div style="color:#888;">~$15–20</div>
+      <div style="color:#888;">Size of a credit card</div>
+      <div style="color:#888;">Runs Linux + relay server</div>
+    </div>
+    <div style="background: rgba(255,255,255,0.04); border: 1px solid #333; border-radius: 8px; padding: 12px 16px; flex:1; min-width:140px; font-size:12px;">
+      <div style="font-weight:bold; margin-bottom:4px;">🔋 USB Battery Bank</div>
+      <div style="color:#888;">~$15 (any 5V USB bank)</div>
+      <div style="color:#888;">8+ hours on a small bank</div>
+      <div style="color:#888;">Or plug into church outlet</div>
+    </div>
+    <div style="background: rgba(255,255,255,0.04); border: 1px solid #333; border-radius: 8px; padding: 12px 16px; flex:1; min-width:140px; font-size:12px;">
+      <div style="font-weight:bold; margin-bottom:4px;">💳 MicroSD Card</div>
+      <div style="color:#888;">~$5 (8GB+)</div>
+      <div style="color:#888;">Pre-flashed with config</div>
+      <div style="color:#888;">Plug and play every Sunday</div>
+    </div>
+  </div>
+  <div style="margin-top:12px; padding: 10px 14px; background: rgba(16,185,129,0.08); border-radius:8px; font-size:12px; color:#10b981;">
+    💰 Total one-time hardware cost: ~$35–40. Church operator just powers it on before service.
+  </div>
+</div>
+
+<!-- Tech Stack -->
+<div class="section">
+  <h3>Technology Stack</h3>
+  <div style="display:flex; gap:12px; flex-wrap:wrap;">
+    <div style="background: rgba(255,255,255,0.04); border: 1px solid #333; border-radius: 8px; padding: 12px 16px; flex:1; min-width:140px; font-size:12px;">
+      <div style="color:#a78bfa; font-weight:bold; margin-bottom:6px;">📱 Mobile App</div>
+      <div>Flutter (iOS + Android)</div>
+      <div style="color:#888;">Single codebase</div>
+      <div style="color:#888;">flutter_sound for audio</div>
+      <div style="color:#888;">dart:io UDP sockets</div>
+    </div>
+    <div style="background: rgba(255,255,255,0.04); border: 1px solid #333; border-radius: 8px; padding: 12px 16px; flex:1; min-width:140px; font-size:12px;">
+      <div style="color:#10b981; font-weight:bold; margin-bottom:6px;">🎵 Audio Codec</div>
+      <div>Opus @ 16–32kbps</div>
+      <div style="color:#888;">Voice-optimized</div>
+      <div style="color:#888;">10ms frame size</div>
+      <div style="color:#888;">Handles packet loss</div>
+    </div>
+    <div style="background: rgba(255,255,255,0.04); border: 1px solid #333; border-radius: 8px; padding: 12px 16px; flex:1; min-width:140px; font-size:12px;">
+      <div style="color:#f59e0b; font-weight:bold; margin-bottom:6px;">📡 Transport</div>
+      <div>UDP unicast to Pi</div>
+      <div>Pi → UDP multicast</div>
+      <div style="color:#888;">RTP packet format</div>
+      <div style="color:#888;">Per-language port</div>
+    </div>
+    <div style="background: rgba(255,255,255,0.04); border: 1px solid #333; border-radius: 8px; padding: 12px 16px; flex:1; min-width:140px; font-size:12px;">
+      <div style="color:#60a5fa; font-weight:bold; margin-bottom:6px;">💾 Pi Server</div>
+      <div>Raspberry Pi OS Lite</div>
+      <div>hostapd (Wi-Fi AP)</div>
+      <div>dnsmasq (DHCP)</div>
+      <div>Go/Python relay</div>
+    </div>
+  </div>
+</div>
