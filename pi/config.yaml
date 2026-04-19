@@ -1,0 +1,11 @@
+ssid: ChurchTranslator
+password: church1234
+channels:
+  - id: 1
+    name: "English → Spanish"
+  - id: 2
+    name: "English → Portuguese"
+  - id: 3
+    name: "English → Chinese"
+  - id: 4
+    name: "English → French"
